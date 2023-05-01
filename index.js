@@ -1,7 +1,7 @@
 const http = require("http")
 function requestController() {
     //logica de nuestra funcion
-    console.log("Hola Mundos!!!!!!")
+    console.log("Hola Mundos!!!")
 }
 //configurar nuetra funcion
 const server = http.createServer(requestController)
