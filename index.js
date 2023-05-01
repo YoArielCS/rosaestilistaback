@@ -2,7 +2,7 @@ require("dotenv").config()
 const http = require("http")
 function requestController() {
     //logica de nuestra funcion
-    console.log("Hola Mundos!!!")
+    console.log("Hola Mundos")
 }
 //configurar nuetra Servidor
 const server = http.createServer(requestController)
