@@ -18,19 +18,7 @@ function requestController(req, res) {
 
         return
     }
-    if (method === "GET" && url === "/about") {
-        res.setHeader("Content-type", "text/html; charset=utf-8")
-        fs.readFile('./public/about.html', function (err, file) {
-            if (err) {
-                console.log("HUBO UN ERROR")
-            }
-            res.write(file)
-            res.end()
-        })
 
-        return
-
-    }
 
     res.setHeader("Content-type", "text/html; charset=utf-8")
     res.write("<h1>Pagina No encontrada </h1>")

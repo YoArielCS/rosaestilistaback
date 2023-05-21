@@ -21,13 +21,38 @@ const Contact = mongoose.model('Contact', contactSchema, 'Contactos')
 // servir archivos estaticos
 app.use(express.static('public'))
 app.use(express.json())
+// Parsear las solicitudes JSON
+app.use(bodyParser.json())
+
 
 //configurar rutas
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('')
 })
-app.get('/users', (req, res) => {
-    res.send([{ name: "Ariel" }, { name: "Rosa" }])
+// Endpoint para guardar los datos del formulario
+app.post('/', (req, res) => {
+    const { name, email, comment } = req.body
+
+    // Validación simple de los datos del formulario
+    if (!name || !email || !comment) {
+        return res.status(400).json({ error: 'Por favor ingrese todos los campos.' })
+    }
+
+    // Crear una nueva instancia del modelo Contact con los datos del formulario
+    const newContact = new Contact({
+        name,
+        email,
+        comment,
+    })
+
+    // Guardar los datos del formulario en la base de datos
+    newContact.save((err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Error inesperado. Por favor, inténtelo de nuevo más tarde' });
+        }
+        return res.json({ message: '¡Gracias! Hemos recibido tu mensaje.' })
+    })
 })
 // poner escuchar la app en un puerto
 app.listen(port, () => {
