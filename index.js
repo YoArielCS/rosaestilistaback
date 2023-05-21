@@ -26,11 +26,11 @@ app.use(bodyParser.json())
 
 
 //configurar rutas
-app.get('/', (req, res) => {
+app.get('/public', (req, res) => {
     res.send('')
 })
 // Endpoint para guardar los datos del formulario
-app.post('/', (req, res) => {
+app.post('/public', (req, res) => {
     const { name, email, comment } = req.body
 
     // Validación simple de los datos del formulario
